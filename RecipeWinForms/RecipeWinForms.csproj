@@ -9,8 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\repos\CPUFramework\CPUFramework.csproj" />
-    <ProjectReference Include="..\..\CPUFramework\CPUFramework.csproj" />
+    <ProjectReference Include="..\..\CPUFramwork\CPUFramework.csproj" />
   </ItemGroup>
 
 </Project>
