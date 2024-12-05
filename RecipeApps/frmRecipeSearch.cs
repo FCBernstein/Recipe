@@ -1,4 +1,5 @@
 ﻿using CPUFramework;
+using CPUWindowsFormFramework;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,9 +20,11 @@ namespace RecipeWinForms
             InitializeComponent();
             btnSearch.Click += BtnSearch_Click;
             gRecipe.CellDoubleClick += GRecipe_CellDoubleClick;
-            FormatGrid();
+            btnNew.Click += BtnNew_Click;
+            WindowsFormsUtility.FormatGridForSearchResults(gRecipe);
         }
 
+        
         private void SearchForRecipe(string recipename)
         {
             string sql = "select RecipeID, RecipeName from recipe r where r.RecipeName like '%" + recipename + "%'";
@@ -31,27 +34,30 @@ namespace RecipeWinForms
             gRecipe.Columns["RecipeId"].Visible = false;
         }
 
-        private void DisplayRecipeDetail(int rowindex)
+        private void ShowAddEditDeleteRecipeForm(int rowindex)
         {
-            int recipeid = (int)gRecipe.Rows[rowindex].Cells["RecipeId"].Value;
-            frmRecipeDisplay frm = new frmRecipeDisplay();
-            frm.ShowRecipeDetailsForm(recipeid);
+            int id = 0;
+            if (rowindex > -1)
+            {
+                id = (int)gRecipe.Rows[rowindex].Cells["RecipeId"].Value;
+            }
+            frmAddEditDeleteRecipe frmaed = new frmAddEditDeleteRecipe();
+            frmaed.ShowForm(id);
         }
-
-        private void FormatGrid()
-        {
-            gRecipe.AllowUserToAddRows = false;
-            gRecipe.ReadOnly = true;
-            gRecipe.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            gRecipe.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-        }
+        
         private void GRecipe_CellDoubleClick(object? sender, DataGridViewCellEventArgs e)
         {
-            DisplayRecipeDetail(e.RowIndex);
+            ShowAddEditDeleteRecipeForm(e.RowIndex);
         }
         private void BtnSearch_Click(object? sender, EventArgs e)
         {
             SearchForRecipe(txtRecipeName.Text);
         }
+
+        private void BtnNew_Click(object? sender, EventArgs e)
+        {
+            ShowAddEditDeleteRecipeForm(-1);
+        }
+
     }
 }

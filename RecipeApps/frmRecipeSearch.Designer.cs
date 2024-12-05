@@ -35,6 +35,7 @@
             txtRecipeName = new TextBox();
             btnSearch = new Button();
             gRecipe = new DataGridView();
+            btnNew = new Button();
             tblSearchMain.SuspendLayout();
             tblSearchHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gRecipe).BeginInit();
@@ -54,27 +55,29 @@
             tblSearchMain.RowCount = 2;
             tblSearchMain.RowStyles.Add(new RowStyle());
             tblSearchMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tblSearchMain.Size = new Size(420, 448);
+            tblSearchMain.Size = new Size(528, 448);
             tblSearchMain.TabIndex = 0;
             // 
             // tblSearchHeader
             // 
             tblSearchHeader.Anchor = AnchorStyles.Left;
             tblSearchHeader.AutoSize = true;
-            tblSearchHeader.ColumnCount = 3;
+            tblSearchHeader.ColumnCount = 4;
+            tblSearchHeader.ColumnStyles.Add(new ColumnStyle());
             tblSearchHeader.ColumnStyles.Add(new ColumnStyle());
             tblSearchHeader.ColumnStyles.Add(new ColumnStyle());
             tblSearchHeader.ColumnStyles.Add(new ColumnStyle());
             tblSearchHeader.Controls.Add(lblRecipeName, 0, 0);
             tblSearchHeader.Controls.Add(txtRecipeName, 1, 0);
             tblSearchHeader.Controls.Add(btnSearch, 2, 0);
+            tblSearchHeader.Controls.Add(btnNew, 3, 0);
             tblSearchHeader.Font = new Font("Tekton Pro", 11.9999981F, FontStyle.Bold, GraphicsUnit.Point, 0);
             tblSearchHeader.Location = new Point(4, 4);
             tblSearchHeader.Margin = new Padding(4);
             tblSearchHeader.Name = "tblSearchHeader";
             tblSearchHeader.RowCount = 1;
             tblSearchHeader.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tblSearchHeader.Size = new Size(388, 41);
+            tblSearchHeader.Size = new Size(469, 41);
             tblSearchHeader.TabIndex = 0;
             // 
             // lblRecipeName
@@ -114,14 +117,25 @@
             gRecipe.Dock = DockStyle.Fill;
             gRecipe.Location = new Point(3, 52);
             gRecipe.Name = "gRecipe";
-            gRecipe.Size = new Size(414, 393);
+            gRecipe.Size = new Size(522, 393);
             gRecipe.TabIndex = 1;
+            // 
+            // btnNew
+            // 
+            btnNew.AutoSize = true;
+            btnNew.Dock = DockStyle.Fill;
+            btnNew.Location = new Point(391, 3);
+            btnNew.Name = "btnNew";
+            btnNew.Size = new Size(75, 35);
+            btnNew.TabIndex = 3;
+            btnNew.Text = "New";
+            btnNew.UseVisualStyleBackColor = true;
             // 
             // frmRecipeSearch
             // 
             AutoScaleDimensions = new SizeF(11F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(420, 448);
+            ClientSize = new Size(528, 448);
             Controls.Add(tblSearchMain);
             Font = new Font("Tekton Pro Ext", 11.9999981F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -144,5 +158,6 @@
         private TextBox txtRecipeName;
         private Button btnSearch;
         private DataGridView gRecipe;
+        private Button btnNew;
     }
 }
