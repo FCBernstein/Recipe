@@ -49,8 +49,8 @@
             txtRecipeName = new TextBox();
             txtCalorieCount = new TextBox();
             dtpDateDrafted = new DateTimePicker();
-            dtpDatePublished = new DateTimePicker();
-            dtpDateArchived = new DateTimePicker();
+            txtDatePublished = new TextBox();
+            txtDateArchived = new TextBox();
             tsAddRecipe.SuspendLayout();
             tblMain.SuspendLayout();
             tblRecipeData.SuspendLayout();
@@ -140,8 +140,8 @@
             tblRecipeData.Controls.Add(txtRecipeName, 1, 2);
             tblRecipeData.Controls.Add(txtCalorieCount, 1, 3);
             tblRecipeData.Controls.Add(dtpDateDrafted, 1, 4);
-            tblRecipeData.Controls.Add(dtpDatePublished, 1, 5);
-            tblRecipeData.Controls.Add(dtpDateArchived, 1, 6);
+            tblRecipeData.Controls.Add(txtDatePublished, 1, 5);
+            tblRecipeData.Controls.Add(txtDateArchived, 1, 6);
             tblRecipeData.Dock = DockStyle.Fill;
             tblRecipeData.Location = new Point(3, 22);
             tblRecipeData.Name = "tblRecipeData";
@@ -246,7 +246,7 @@
             // 
             // txtRecipeName
             // 
-            txtRecipeName.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            txtRecipeName.Anchor = AnchorStyles.Left;
             txtRecipeName.Location = new Point(268, 129);
             txtRecipeName.Name = "txtRecipeName";
             txtRecipeName.Size = new Size(259, 27);
@@ -254,7 +254,7 @@
             // 
             // txtCalorieCount
             // 
-            txtCalorieCount.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            txtCalorieCount.Anchor = AnchorStyles.Left;
             txtCalorieCount.Location = new Point(268, 186);
             txtCalorieCount.Name = "txtCalorieCount";
             txtCalorieCount.Size = new Size(259, 27);
@@ -269,23 +269,21 @@
             dtpDateDrafted.Size = new Size(200, 27);
             dtpDateDrafted.TabIndex = 11;
             // 
-            // dtpDatePublished
+            // txtDatePublished
             // 
-            dtpDatePublished.Anchor = AnchorStyles.Left;
-            dtpDatePublished.Format = DateTimePickerFormat.Short;
-            dtpDatePublished.Location = new Point(268, 300);
-            dtpDatePublished.Name = "dtpDatePublished";
-            dtpDatePublished.Size = new Size(200, 27);
-            dtpDatePublished.TabIndex = 12;
+            txtDatePublished.Anchor = AnchorStyles.Left;
+            txtDatePublished.Location = new Point(268, 300);
+            txtDatePublished.Name = "txtDatePublished";
+            txtDatePublished.Size = new Size(259, 27);
+            txtDatePublished.TabIndex = 12;
             // 
-            // dtpDateArchived
+            // txtDateArchived
             // 
-            dtpDateArchived.Anchor = AnchorStyles.Left;
-            dtpDateArchived.Format = DateTimePickerFormat.Short;
-            dtpDateArchived.Location = new Point(268, 358);
-            dtpDateArchived.Name = "dtpDateArchived";
-            dtpDateArchived.Size = new Size(200, 27);
-            dtpDateArchived.TabIndex = 13;
+            txtDateArchived.Anchor = AnchorStyles.Left;
+            txtDateArchived.Location = new Point(268, 358);
+            txtDateArchived.Name = "txtDateArchived";
+            txtDateArchived.Size = new Size(259, 27);
+            txtDateArchived.TabIndex = 13;
             // 
             // frmAddEditDeleteRecipe
             // 
@@ -329,9 +327,9 @@
         private TextBox txtRecipeName;
         private TextBox txtCalorieCount;
         private DateTimePicker dtpDateDrafted;
-        private DateTimePicker dtpDatePublished;
-        private DateTimePicker dtpDateArchived;
         private ToolStripButton btnDelete;
         private ToolStripSeparator toolStripSeparator2;
+        private TextBox txtDatePublished;
+        private TextBox txtDateArchived;
     }
 }

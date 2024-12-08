@@ -68,10 +68,10 @@ create table dbo.Recipe(
         when DatePublished is not null and DateArchived is null then 'Published' 
         when DateArchived is not null then 'Archived' end,
     ImageName as concat('Recipe_', replace(RecipeName, ' ', '_'),'.jpg'),
-    constraint ck_Recipe_DatePublished_must_be_between_DateDrafted_and_current_date 
-            check(DatePublished between DateDrafted and getdate()),
-    constraint ck_Recipe_DateArchived_must_be_between_DateDrafted_or_DatePublished_if_applicable_and_current_date 
-            check(DateArchived between Isnull(DatePublished, DateDrafted) and getdate())
+    constraint ck_Recipe_DatePublished_must_be_between_DateDrafted_and_current_date_or_null 
+            check(DatePublished is null or DatePublished between DateDrafted and getdate()),
+    constraint ck_Recipe_DateArchived_must_be_between_DateDrafted_or_DatePublished_if_applicable_and_current_date_or_null 
+            check(DateArchived is null or DateArchived between Isnull(DatePublished, DateDrafted) and getdate())
 )
 go 
 
