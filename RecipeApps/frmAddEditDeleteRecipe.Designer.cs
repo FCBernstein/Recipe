@@ -272,6 +272,7 @@
             // txtDatePublished
             // 
             txtDatePublished.Anchor = AnchorStyles.Left;
+            txtDatePublished.Enabled = false;
             txtDatePublished.Location = new Point(268, 300);
             txtDatePublished.Name = "txtDatePublished";
             txtDatePublished.Size = new Size(259, 27);
@@ -280,6 +281,7 @@
             // txtDateArchived
             // 
             txtDateArchived.Anchor = AnchorStyles.Left;
+            txtDateArchived.Enabled = false;
             txtDateArchived.Location = new Point(268, 358);
             txtDateArchived.Name = "txtDateArchived";
             txtDateArchived.Size = new Size(259, 27);

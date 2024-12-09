@@ -59,15 +59,13 @@ namespace RecipeWinForms
                     $"UsersId = '{r["UsersId"]}',",
                     $"RecipeName = '{r["RecipeName"]}',",
                     $"CalorieCount = '{r["CalorieCount"]}',",
-                    $"DateDrafted = '{r["DateDrafted"]}',",
-                    $"DatePublished = '{r["DatePublished"]}',",
-                    $"DateArchived = '{r["DateArchived"]}'",
+                    $"DateDrafted = '{r["DateDrafted"]}'",
                     $"where RecipeId = {r["RecipeId"]}");
             }
             else
             {
                 sql = "insert Recipe(CuisineId, UsersId, RecipeName, CalorieCount, DateDrafted, DatePublished, DateArchived) ";
-                sql += $"select '{r["CuisineId"]}', '{r["UsersId"]}', '{r["RecipeName"]}', '{r["CalorieCount"]}', '{r["DateDrafted"]}', '{r["DatePublished"]}', '{r["DateArchived"]}'";
+                sql += $"select '{r["CuisineId"]}', '{r["UsersId"]}', '{r["RecipeName"]}', '{r["CalorieCount"]}', '{r["DateDrafted"]}'";
             }
             
             SQLUtility.ExecuteSQL(sql);
