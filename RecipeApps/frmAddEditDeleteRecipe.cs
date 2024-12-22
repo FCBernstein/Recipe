@@ -64,7 +64,7 @@ namespace RecipeWinForms
             }
             else
             {
-                sql = "insert Recipe(CuisineId, UsersId, RecipeName, CalorieCount, DateDrafted, DatePublished, DateArchived) ";
+                sql = "insert Recipe(CuisineId, UsersId, RecipeName, CalorieCount, DateDrafted) ";
                 sql += $"select '{r["CuisineId"]}', '{r["UsersId"]}', '{r["RecipeName"]}', '{r["CalorieCount"]}', '{r["DateDrafted"]}'";
             }
             

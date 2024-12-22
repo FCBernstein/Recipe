@@ -126,8 +126,8 @@
             // tblRecipeData
             // 
             tblRecipeData.ColumnCount = 2;
-            tblRecipeData.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tblRecipeData.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tblRecipeData.ColumnStyles.Add(new ColumnStyle());
+            tblRecipeData.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tblRecipeData.Controls.Add(lblCuisineCaption, 0, 0);
             tblRecipeData.Controls.Add(lblUserCaption, 0, 1);
             tblRecipeData.Controls.Add(lblRecipeNameCaption, 0, 2);
@@ -146,13 +146,13 @@
             tblRecipeData.Location = new Point(3, 22);
             tblRecipeData.Name = "tblRecipeData";
             tblRecipeData.RowCount = 7;
-            tblRecipeData.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5F));
-            tblRecipeData.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5F));
-            tblRecipeData.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5F));
-            tblRecipeData.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5F));
-            tblRecipeData.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5F));
-            tblRecipeData.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5F));
-            tblRecipeData.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5F));
+            tblRecipeData.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
+            tblRecipeData.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
+            tblRecipeData.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
+            tblRecipeData.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
+            tblRecipeData.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
+            tblRecipeData.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
+            tblRecipeData.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
             tblRecipeData.Size = new Size(530, 401);
             tblRecipeData.TabIndex = 1;
             // 
@@ -228,63 +228,63 @@
             // 
             // lstCuisineName
             // 
-            lstCuisineName.Anchor = AnchorStyles.Left;
+            lstCuisineName.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lstCuisineName.FormattingEnabled = true;
-            lstCuisineName.Location = new Point(268, 17);
+            lstCuisineName.Location = new Point(119, 17);
             lstCuisineName.Name = "lstCuisineName";
-            lstCuisineName.Size = new Size(121, 27);
+            lstCuisineName.Size = new Size(408, 27);
             lstCuisineName.TabIndex = 7;
             // 
             // lstUserName
             // 
-            lstUserName.Anchor = AnchorStyles.Left;
+            lstUserName.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lstUserName.FormattingEnabled = true;
-            lstUserName.Location = new Point(268, 74);
+            lstUserName.Location = new Point(119, 74);
             lstUserName.Name = "lstUserName";
-            lstUserName.Size = new Size(121, 27);
+            lstUserName.Size = new Size(408, 27);
             lstUserName.TabIndex = 8;
             // 
             // txtRecipeName
             // 
-            txtRecipeName.Anchor = AnchorStyles.Left;
-            txtRecipeName.Location = new Point(268, 129);
+            txtRecipeName.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            txtRecipeName.Location = new Point(119, 129);
             txtRecipeName.Name = "txtRecipeName";
-            txtRecipeName.Size = new Size(259, 27);
+            txtRecipeName.Size = new Size(408, 27);
             txtRecipeName.TabIndex = 9;
             // 
             // txtCalorieCount
             // 
-            txtCalorieCount.Anchor = AnchorStyles.Left;
-            txtCalorieCount.Location = new Point(268, 186);
+            txtCalorieCount.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            txtCalorieCount.Location = new Point(119, 186);
             txtCalorieCount.Name = "txtCalorieCount";
-            txtCalorieCount.Size = new Size(259, 27);
+            txtCalorieCount.Size = new Size(408, 27);
             txtCalorieCount.TabIndex = 10;
             // 
             // dtpDateDrafted
             // 
-            dtpDateDrafted.Anchor = AnchorStyles.Left;
+            dtpDateDrafted.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             dtpDateDrafted.Format = DateTimePickerFormat.Short;
-            dtpDateDrafted.Location = new Point(268, 243);
+            dtpDateDrafted.Location = new Point(119, 243);
             dtpDateDrafted.Name = "dtpDateDrafted";
-            dtpDateDrafted.Size = new Size(200, 27);
+            dtpDateDrafted.Size = new Size(408, 27);
             dtpDateDrafted.TabIndex = 11;
             // 
             // txtDatePublished
             // 
-            txtDatePublished.Anchor = AnchorStyles.Left;
+            txtDatePublished.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             txtDatePublished.Enabled = false;
-            txtDatePublished.Location = new Point(268, 300);
+            txtDatePublished.Location = new Point(119, 300);
             txtDatePublished.Name = "txtDatePublished";
-            txtDatePublished.Size = new Size(259, 27);
+            txtDatePublished.Size = new Size(408, 27);
             txtDatePublished.TabIndex = 12;
             // 
             // txtDateArchived
             // 
-            txtDateArchived.Anchor = AnchorStyles.Left;
+            txtDateArchived.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             txtDateArchived.Enabled = false;
-            txtDateArchived.Location = new Point(268, 358);
+            txtDateArchived.Location = new Point(119, 358);
             txtDateArchived.Name = "txtDateArchived";
-            txtDateArchived.Size = new Size(259, 27);
+            txtDateArchived.Size = new Size(408, 27);
             txtDateArchived.TabIndex = 13;
             // 
             // frmAddEditDeleteRecipe
