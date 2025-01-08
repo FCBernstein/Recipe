@@ -178,7 +178,7 @@ namespace RecipeTest
         }
 
         [Test]
-        public void LoadPresident()
+        public void LoadRecipe()
         {
             int recipeid = GetExistingRecipeId();
             Assume.That(recipeid > 0, "No recipes in DB, can't run test");
