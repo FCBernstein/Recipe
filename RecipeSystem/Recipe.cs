@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data;
+
 
 
 namespace RecipeSystem
@@ -13,26 +8,38 @@ namespace RecipeSystem
     {
         public static DataTable SearchRecipe(string recipename)
         {
-            string sql = "select RecipeID, RecipeName from recipe r where r.RecipeName like '%" + recipename + "%'";
-            
-            DataTable recipenamesdt = SQLUtility.GetDataTable(sql);
+            DataTable recipenamesdt =new();
+            SqlCommand srcmd = SQLUtility.GetSQLCommand("RecipeGet");
+            srcmd.Parameters["@RecipeName"].Value = recipename;
+            recipenamesdt = SQLUtility.GetDataTable(srcmd);
             return recipenamesdt;
         }
 
         public static DataTable LoadRecipe(int recipeid)
         {
-            string sql = "select r.*, c.CuisineName, u.UserName from Recipe r join Cuisine c on r.CuisineId = c.CuisineId join Users u on r.UsersId = u.UsersId where r.RecipeId = " + recipeid.ToString();
-            return SQLUtility.GetDataTable(sql);
+            DataTable loadrecipedt = new();
+            SqlCommand lrcmd = SQLUtility.GetSQLCommand("RecipeGet");
+            lrcmd.Parameters["@RecipeId"].Value = recipeid;
+            loadrecipedt = SQLUtility.GetDataTable(lrcmd);
+            return loadrecipedt;
         }
 
         public static DataTable GetCuisineList()
         {
-            return SQLUtility.GetDataTable("select CuisineId, CuisineName from Cuisine");
+            DataTable cusinenamedt = new();
+            SqlCommand gclcmd = SQLUtility.GetSQLCommand("CuisineGet");
+            gclcmd.Parameters["@All"].Value = 1;
+            cusinenamedt = SQLUtility.GetDataTable(gclcmd);
+            return cusinenamedt;
         }
 
         public static DataTable GetUsersList()
         {
-            return SQLUtility.GetDataTable("select UsersId, UserName from Users");
+            DataTable usernamedt = new();
+            SqlCommand gulcmd = SQLUtility.GetSQLCommand("UsersGet");
+            gulcmd.Parameters["@All"].Value = 1;
+            usernamedt = SQLUtility.GetDataTable(gulcmd);
+            return usernamedt;
         }
 
         public static void Save(DataTable dtrecipe)
