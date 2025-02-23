@@ -22,7 +22,7 @@ namespace RecipeWinForms
             WindowsFormsUtility.FormatGridForSearchResults(gRecipe);
         }
 
-        
+
         private void SearchForRecipe(string recipename)
         {
             DataTable recipenamesdt = Recipe.SearchRecipe(recipename);
@@ -40,7 +40,7 @@ namespace RecipeWinForms
             frmAddEditDeleteRecipe frmaed = new frmAddEditDeleteRecipe();
             frmaed.ShowForm(id);
         }
-        
+
         private void GRecipe_CellDoubleClick(object? sender, DataGridViewCellEventArgs e)
         {
             ShowAddEditDeleteRecipeForm(e.RowIndex);

@@ -21,7 +21,7 @@ namespace RecipeWinForms
             btnDelete.Click += BtnDelete_Click;
         }
 
-        
+
         public void ShowForm(int recipeid)
         {
             dtrecipe = Recipe.LoadRecipe(recipeid);
@@ -43,13 +43,39 @@ namespace RecipeWinForms
 
         private void Save()
         {
-            Recipe.Save(dtrecipe);
+            Application.UseWaitCursor = true;
+            try
+            {
+                Recipe.Save(dtrecipe);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Hearty Hearth Recipe");
+            }
+            finally
+            {
+                Application.UseWaitCursor = false;
+            }
+
         }
 
         private void Delete()
         {
-            Recipe.Delete(dtrecipe);
-            this.Close();
+            Application.UseWaitCursor = true;
+            try
+            {
+                Recipe.Delete(dtrecipe);
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Hearty Hearth Recipe");
+            }
+            finally
+            {
+                Application.UseWaitCursor = false;
+            }
+
         }
 
         private void BtnDelete_Click(object? sender, EventArgs e)
