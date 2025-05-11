@@ -199,15 +199,14 @@ namespace RecipeTest
         [Test]
         public void DeleteRecipe()
         {
-            DataTable dt = SQLUtility.GetDataTable(string.Join(Environment.NewLine, $"select top 1 r.recipeid, RecipeName from recipe r ",
-                $"left join recipeingredient ri on r.recipeid = ri.recipeid ",
-                $"left join step s on r.recipeid = s.recipeid ",
-                $"left join mealcourserecipe mcr on r.recipeid = mcr.recipeid ",
-                $"left join cookbookrecipe cr on r.recipeid = cr.recipeid ",
-                $"where ri.recipeingredientid is null",
-                $"and s.stepid is null",
-                $"and mcr.mealcourserecipeid is null",
-                $"and cr.cookbookrecipeid is null"));
+            string sql = @"select top 1 r.recipeid, RecipeName from recipe r
+                left join recipeingredient ri on r.recipeid = ri.recipeid
+                left join step s on r.recipeid = s.recipeid
+                left join mealcourserecipe mcr on r.recipeid = mcr.recipeid
+                left join cookbookrecipe cr on r.recipeid = cr.recipeid
+                where mcr.mealcourserecipeid is null
+                and cr.cookbookrecipeid is null";
+            DataTable dt = SQLUtility.GetDataTable(sql);
             int recipeid = 0;
             string recipedesc = "";
             if (dt.Rows.Count > 0)
@@ -228,8 +227,6 @@ namespace RecipeTest
         public void DeleteRecipeWithRelatedData()
         {
             DataTable dt = SQLUtility.GetDataTable(string.Join(Environment.NewLine, $"select top 1 r.recipeid, RecipeName from recipe r ",
-                $"join recipeingredient ri on r.recipeid = ri.recipeid ",
-                $"join step s on r.recipeid = s.recipeid ",
                 $"join mealcourserecipe mcr on r.recipeid = mcr.recipeid ",
                 $"join cookbookrecipe cr on r.recipeid = cr.recipeid "));
             int recipeid = 0;

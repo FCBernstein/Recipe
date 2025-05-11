@@ -73,7 +73,7 @@
             btnSave.ImageTransparentColor = Color.Magenta;
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(45, 23);
-            btnSave.Text = "Save";
+            btnSave.Text = "&Save";
             // 
             // toolStripSeparator1
             // 
@@ -88,7 +88,7 @@
             btnDelete.ImageTransparentColor = Color.Magenta;
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(55, 23);
-            btnDelete.Text = "Delete";
+            btnDelete.Text = "&Delete";
             // 
             // toolStripSeparator2
             // 
@@ -230,7 +230,7 @@
             // 
             lstCuisineName.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lstCuisineName.FormattingEnabled = true;
-            lstCuisineName.Location = new Point(119, 17);
+            lstCuisineName.Location = new Point(119, 15);
             lstCuisineName.Name = "lstCuisineName";
             lstCuisineName.Size = new Size(408, 27);
             lstCuisineName.TabIndex = 7;
@@ -239,7 +239,7 @@
             // 
             lstUserName.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lstUserName.FormattingEnabled = true;
-            lstUserName.Location = new Point(119, 74);
+            lstUserName.Location = new Point(119, 72);
             lstUserName.Name = "lstUserName";
             lstUserName.Size = new Size(408, 27);
             lstUserName.TabIndex = 8;
