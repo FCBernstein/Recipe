@@ -197,7 +197,7 @@ namespace RecipeTest
         }
 
         [Test]
-        public void DeleteRecipe()
+        public void DeleteRecipeNOTPublishedorLessThan30DaysArchive()
         {
             string sql = @"select top 1 r.recipeid, RecipeName from recipe r
                 left join recipeingredient ri on r.recipeid = ri.recipeid
@@ -205,7 +205,8 @@ namespace RecipeTest
                 left join mealcourserecipe mcr on r.recipeid = mcr.recipeid
                 left join cookbookrecipe cr on r.recipeid = cr.recipeid
                 where mcr.mealcourserecipeid is null
-                and cr.cookbookrecipeid is null";
+                and cr.cookbookrecipeid is null
+                and (r.RecipeStatus <> 'Published' or DateDiff(day, r.DateArchived, getdate()) > 30)";
             DataTable dt = SQLUtility.GetDataTable(sql);
             int recipeid = 0;
             string recipedesc = "";
@@ -214,13 +215,41 @@ namespace RecipeTest
                 recipeid = (int)dt.Rows[0]["recipeid"];
                 recipedesc = (string)dt.Rows[0]["RecipeName"];
             }
-            Assume.That(recipeid > 0, "No recipes without related data in DB, can't run test");
-            TestContext.WriteLine("existing recipe without related data, with id = " + recipeid + " " + recipedesc);
+            Assume.That(recipeid > 0, "No recipes without related data that are not Published or > 30 days archived in DB, can't run test");
+            TestContext.WriteLine("existing recipe without related data not Published or > 30 days archived, with id = " + recipeid + " " + recipedesc);
             TestContext.WriteLine("Ensure that app can delete " + recipeid);
             Recipe.Delete(dt);
             DataTable dtafterdelete = SQLUtility.GetDataTable("select * from Recipe where recipeid = " + recipeid);
             Assert.IsTrue(dtafterdelete.Rows.Count == 0, "record with recipeid " + recipeid + " exists in DB");
             TestContext.WriteLine("Record with recipeid " + recipeid + " does not exist in DB");
+        }
+
+        [Test]
+        public void DeleteRecipePublishedorLessThan30DaysArchive()
+        {
+            string sql = @"select top 1 r.recipeid, RecipeName from recipe r
+                left join recipeingredient ri on r.recipeid = ri.recipeid
+                left join step s on r.recipeid = s.recipeid
+                left join mealcourserecipe mcr on r.recipeid = mcr.recipeid
+                left join cookbookrecipe cr on r.recipeid = cr.recipeid
+                where mcr.mealcourserecipeid is null
+                and cr.cookbookrecipeid is null
+                and (r.RecipeStatus = 'Published' or DateDiff(day, r.DateArchived, getdate()) < 30)";
+            DataTable dt = SQLUtility.GetDataTable(sql);
+            int recipeid = 0;
+            string recipedesc = "";
+            if (dt.Rows.Count > 0)
+            {
+                recipeid = (int)dt.Rows[0]["recipeid"];
+                recipedesc = (string)dt.Rows[0]["RecipeName"];
+            }
+            Assume.That(recipeid > 0, "No recipes (without related data) that are Published or < 30 days archived in DB, can't run test");
+            TestContext.WriteLine("existing recipe (without related data) that is Published or < 30 days archived, with id = " + recipeid + " " + recipedesc);
+            TestContext.WriteLine("Ensure that app cannot delete " + recipeid);
+
+            Assert.Throws<Exception>(() => Recipe.Delete(dt));
+
+            TestContext.WriteLine("Unable to delete recipe because of exception");
         }
 
         [Test]
