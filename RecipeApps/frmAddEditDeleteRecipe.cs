@@ -14,6 +14,7 @@ namespace RecipeWinForms
     public partial class frmAddEditDeleteRecipe : Form
     {
         DataTable dtrecipe;
+        BindingSource rbindsource = new BindingSource();
         public frmAddEditDeleteRecipe()
         {
             InitializeComponent();
@@ -25,6 +26,7 @@ namespace RecipeWinForms
         public void ShowForm(int recipeid)
         {
             dtrecipe = Recipe.LoadRecipe(recipeid);
+            rbindsource.DataSource = dtrecipe;
             if (recipeid == 0)
             {
                 dtrecipe.Rows.Add();
@@ -33,11 +35,11 @@ namespace RecipeWinForms
             DataTable dtusers = Recipe.GetUsersList();
             WindowsFormsUtility.SetListBinding(lstCuisineName, dtcuisine, dtrecipe, "Cuisine");
             WindowsFormsUtility.SetListBinding(lstUserName, dtusers, dtrecipe, "Users");
-            WindowsFormsUtility.SetControlBinding(txtRecipeName, dtrecipe);
-            WindowsFormsUtility.SetControlBinding(txtCalorieCount, dtrecipe);
-            WindowsFormsUtility.SetControlBinding(dtpDateDrafted, dtrecipe);
-            WindowsFormsUtility.SetControlBinding(txtDatePublished, dtrecipe);
-            WindowsFormsUtility.SetControlBinding(txtDateArchived, dtrecipe);
+            WindowsFormsUtility.SetControlBinding(txtRecipeName, rbindsource);
+            WindowsFormsUtility.SetControlBinding(txtCalorieCount, rbindsource);
+            WindowsFormsUtility.SetControlBinding(dtpDateDrafted, rbindsource);
+            WindowsFormsUtility.SetControlBinding(txtDatePublished, rbindsource);
+            WindowsFormsUtility.SetControlBinding(txtDateArchived, rbindsource);
             this.Show();
         }
 
