@@ -20,8 +20,13 @@ namespace RecipeWinForms
             InitializeComponent();
             btnSave.Click += BtnSave_Click;
             btnDelete.Click += BtnDelete_Click;
+            this.Load += FrmAddEditDeleteRecipe_Load;
         }
 
+        private void FrmAddEditDeleteRecipe_Load(object? sender, EventArgs e)
+        {
+            dtpDateDrafted.Value = DateTime.Now;
+        }
 
         public void ShowForm(int recipeid)
         {

@@ -230,7 +230,7 @@
             // 
             lstCuisineName.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lstCuisineName.FormattingEnabled = true;
-            lstCuisineName.Location = new Point(119, 15);
+            lstCuisineName.Location = new Point(119, 17);
             lstCuisineName.Name = "lstCuisineName";
             lstCuisineName.Size = new Size(408, 27);
             lstCuisineName.TabIndex = 7;
@@ -239,7 +239,7 @@
             // 
             lstUserName.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lstUserName.FormattingEnabled = true;
-            lstUserName.Location = new Point(119, 72);
+            lstUserName.Location = new Point(119, 74);
             lstUserName.Name = "lstUserName";
             lstUserName.Size = new Size(408, 27);
             lstUserName.TabIndex = 8;
