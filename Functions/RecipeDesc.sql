@@ -8,8 +8,7 @@ begin
 		select r.RecipeId, 
 		IngCount = (select count(*) from RecipeIngredient ri where ri.RecipeId = r.RecipeId),
 		StepCount = (select count(*) from Step s where s.RecipeId = r.RecipeId)
-		from
-		(select RecipeId from Recipe) r
+		from Recipe r
 		)
 
 	select @value = concat(r.RecipeName, ' (', c.CuisineName, ') has ', x.IngCount, ' ingredients and ', x.StepCount, ' steps')
