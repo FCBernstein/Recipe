@@ -17,10 +17,6 @@ begin
 	on x.RecipeId = r.RecipeId
 	join Cuisine c
 	on c.CuisineId = r.CuisineId
-	join RecipeIngredient ri
-	on r.RecipeId = ri.RecipeId
-	join Step s
-	on r.RecipeId = s.RecipeId
 	where r.RecipeId = @RecipeId
 
 	return @value
