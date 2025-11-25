@@ -1,4 +1,8 @@
-create or alter procedure dbo.CourseGet(@CourseId int = 0, @All bit = 0, @CourseName varchar(35) = '')
+create or alter procedure dbo.CourseGet(
+	@CourseId int = 0, 
+	@All bit = 0, 
+	@CourseName varchar(35) = ''
+	)
 as
 begin
 	select @CourseName = nullif(@CourseName, '')
@@ -14,7 +18,7 @@ go
 /*
 exec CourseGet
 
-exec CourseGet @All = 1
+exec CourseGet @All = 1, @IncludeBlank = 1
 
 exec CourseGet @CourseName = '' --return no result set
 

@@ -1,4 +1,8 @@
-create or alter procedure dbo.MeasurementTypeGet(@MeasurementTypeId int = 0, @All bit = 0, @MeasurementTypeName varchar(50) = '')
+create or alter procedure dbo.MeasurementTypeGet(
+	@MeasurementTypeId int = 0, 
+	@All bit = 0, 
+	@MeasurementTypeName varchar(50) = ''
+	)
 as
 begin
 	select @MeasurementTypeName = nullif(@MeasurementTypeName, '')
@@ -15,7 +19,7 @@ go
 /*
 exec MeasurementTypeGet
 
-exec MeasurementTypeGet @All = 1
+exec MeasurementTypeGet @All = 1, @IncludeBlank = 1
 
 exec MeasurementTypeGet @MeasurementTypeName = '' --return no result set
 

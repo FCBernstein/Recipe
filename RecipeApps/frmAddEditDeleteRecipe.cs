@@ -30,14 +30,14 @@ namespace RecipeWinForms
 
         public void ShowForm(int recipeid)
         {
-            dtrecipe = Recipe.LoadRecipe(recipeid);
+            dtrecipe = Recipe.LoadByRecipeId(recipeid, "RecipeGet");
             rbindsource.DataSource = dtrecipe;
             if (recipeid == 0)
             {
                 dtrecipe.Rows.Add();
             }
-            DataTable dtcuisine = Recipe.GetCuisineList();
-            DataTable dtusers = Recipe.GetUsersList();
+            DataTable dtcuisine = Recipe.LoadListAll("CuisineGet");
+            DataTable dtusers = Recipe.LoadListAll("UsersGet");
             WindowsFormsUtility.SetListBinding(lstCuisineName, dtcuisine, dtrecipe, "Cuisine");
             WindowsFormsUtility.SetListBinding(lstUserName, dtusers, dtrecipe, "Users");
             WindowsFormsUtility.SetControlBinding(txtRecipeName, rbindsource);

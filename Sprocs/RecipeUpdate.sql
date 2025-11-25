@@ -16,7 +16,7 @@ begin
 	if @RecipeId = 0
 	begin
 		insert Recipe(CuisineId, UsersID, RecipeName, CalorieCount, DateDrafted)
-		values(@CuisineId, @UsersID, @RecipeName, @CalorieCount, @DateDrafted)
+		values(@CuisineId, @UsersID, @RecipeName, @CalorieCount, getdate())
 
 		select @RecipeId = scope_identity()
 	end

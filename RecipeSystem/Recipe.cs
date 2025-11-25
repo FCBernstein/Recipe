@@ -1,8 +1,4 @@
-﻿using System.Data;
-
-
-
-namespace RecipeSystem
+﻿namespace RecipeSystem
 {
     public class Recipe
     {
@@ -15,31 +11,22 @@ namespace RecipeSystem
             return recipenamesdt;
         }
 
-        public static DataTable LoadRecipe(int recipeid)
+        public static DataTable LoadByRecipeId(int recipeid, string sprocname)
         {
             DataTable loadrecipedt = new();
-            SqlCommand lrcmd = SQLUtility.GetSQLCommand("RecipeGet");
+            SqlCommand lrcmd = SQLUtility.GetSQLCommand(sprocname);
             lrcmd.Parameters["@RecipeId"].Value = recipeid;
             loadrecipedt = SQLUtility.GetDataTable(lrcmd);
             return loadrecipedt;
         }
 
-        public static DataTable GetCuisineList()
+        public static DataTable LoadListAll(string sprocname)
         {
-            DataTable cusinenamedt = new();
-            SqlCommand gclcmd = SQLUtility.GetSQLCommand("CuisineGet");
-            gclcmd.Parameters["@All"].Value = 1;
-            cusinenamedt = SQLUtility.GetDataTable(gclcmd);
-            return cusinenamedt;
-        }
-
-        public static DataTable GetUsersList()
-        {
-            DataTable usernamedt = new();
-            SqlCommand gulcmd = SQLUtility.GetSQLCommand("UsersGet");
-            gulcmd.Parameters["@All"].Value = 1;
-            usernamedt = SQLUtility.GetDataTable(gulcmd);
-            return usernamedt;
+            DataTable listdt = new();
+            SqlCommand listcmd = SQLUtility.GetSQLCommand(sprocname);
+            listcmd.Parameters["@All"].Value = 1;
+            listdt = SQLUtility.GetDataTable(listcmd);
+            return listdt;
         }
 
         public static void Save(DataTable dtrecipe)
@@ -59,6 +46,12 @@ namespace RecipeSystem
             SqlCommand cmd = SQLUtility.GetSQLCommand("RecipeDelete");
             SQLUtility.SetParamValue(cmd, "@RecipeId", id);
             SQLUtility.ExecuteSQL(cmd);
+        }
+
+        public static DataTable GetDashboard()
+        {
+            SqlCommand getdcmd = SQLUtility.GetSQLCommand("DashboardGet");
+            return SQLUtility.GetDataTable(getdcmd);
         }
     }
 }

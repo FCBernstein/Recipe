@@ -1,4 +1,8 @@
-create or alter procedure dbo.CuisineGet(@CuisineId int = 0, @All bit = 0, @CuisineName varchar(50) = '')
+create or alter procedure dbo.CuisineGet(
+	@CuisineId int = 0, 
+	@All bit = 0, 
+	@CuisineName varchar(50) = ''
+	)
 as
 begin
 	select @CuisineName = nullif(@CuisineName, '')
@@ -15,7 +19,7 @@ go
 /*
 exec CuisineGet
 
-exec CuisineGet @All = 1
+exec CuisineGet @All = 1, @IncludeBlank = 1
 
 exec CuisineGet @CuisineName = '' --return no result set
 

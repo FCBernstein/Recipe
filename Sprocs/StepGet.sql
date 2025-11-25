@@ -1,4 +1,8 @@
-create or alter procedure dbo.StepGet(@StepId int = 0, @All bit = 0, @StepDetail varchar(50) = '')
+create or alter procedure dbo.StepGet(
+	@StepId int = 0, 
+	@All bit = 0, 
+	@StepDetail varchar(50) = ''
+	)
 as
 begin
 	select @StepDetail = nullif(@StepDetail, '')
@@ -23,5 +27,5 @@ exec StepGet @StepDetail = 'g'
 
 declare @StepId int
 select top 1 @StepId = s.StepId from Step s
-exec StepGet @StepId = @StepId
+exec StepGet @StepId = @StepId, @IncludeBlank = 1
 */
