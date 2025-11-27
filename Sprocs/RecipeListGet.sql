@@ -1,20 +1,17 @@
 create or alter procedure dbo.RecipeListGet(
 	@RecipeId int = 0, 
 	@All bit = 0, 
-	@RecipeName varchar(50) = '',
-	@IncludeBlank bit = 0
+	@RecipeName varchar(50) = ''
 	)
 as
 begin
-	select @RecipeName = nullif(@RecipeName, ''), @IncludeBlank = isnull(@IncludeBlank, 0)
+	select @RecipeName = nullif(@RecipeName, '')
 
 	select r.RecipeId, r.RecipeName, r.RecipeStatus, NameofUser = dbo.FullNameofUser(r.UsersId), r.CalorieCount, NumIngredients = dbo.NumIngPerRecipe(r.RecipeId)
 	from Recipe r
 	where r.RecipeId = @RecipeId
 	or @All = 1
 	or r.RecipeName like '%' + @RecipeName + '%'
-	union select 0, '', '', '', 0, ''
-	where @IncludeBlank = 1
 	order by r.RecipeStatus desc, r.RecipeName
 end
 go

@@ -77,7 +77,7 @@ namespace RecipeTest
             r["RecipeName"] = recipename;
             r["CalorieCount"] = caloriecount;
             r["DateDrafted"] = datedrafted;
-            Recipe.Save(dt);
+            Recipe.Save(dt, "Recipe");
 
             int newid = SQLUtility.GetFirstColumnFirstRowValueInt("select * from recipe where recipename = '" + recipename + "'");
 
@@ -105,7 +105,7 @@ namespace RecipeTest
 
             DataTable dt = Recipe.LoadByRecipeId(recipeid, "RecipeGet");
             dt.Rows[0]["CuisineId"] = cuisineid;
-            Recipe.Save(dt);
+            Recipe.Save(dt, "Recipe");
 
             int newcuisineid = GetFirstColumnFirstRowValueInt("select cuisineid from recipe where recipeid = " + recipeid);
             Assert.IsTrue(newcuisineid == cuisineid, "cuisineid for recipe (" + recipeid + ") = " + newcuisineid);
@@ -132,7 +132,7 @@ namespace RecipeTest
 
             DataTable dt = Recipe.LoadByRecipeId(recipeid, "RecipeGet");
             dt.Rows[0]["UsersId"] = usersid;
-            Recipe.Save(dt);
+            Recipe.Save(dt, "Recipe");
 
             int newusersid = GetFirstColumnFirstRowValueInt("select usersid from recipe where recipeid = " + recipeid);
             Assert.IsTrue(newusersid == usersid, "usersid for recipe (" + recipeid + ") = " + newusersid);
@@ -151,7 +151,7 @@ namespace RecipeTest
 
             DataTable dt = Recipe.LoadByRecipeId(recipeid, "RecipeGet");
             dt.Rows[0]["RecipeName"] = recipename;
-            Recipe.Save(dt);
+            Recipe.Save(dt, "Recipe");
 
             string newrecipename = GetFirstColumnFirstRowValueString("select recipename from recipe where recipeid = " + recipeid);
             Assert.IsTrue(newrecipename == recipename, "recipename for recipe (" + recipeid + ") = " + newrecipename);
@@ -170,7 +170,7 @@ namespace RecipeTest
 
             DataTable dt = Recipe.LoadByRecipeId(recipeid, "RecipeGet");
             dt.Rows[0]["RecipeName"] = recipename;
-            Exception ex = Assert.Throws<Exception>(() => Recipe.Save(dt));
+            Exception ex = Assert.Throws<Exception>(() => Recipe.Save(dt, "Recipe"));
             TestContext.WriteLine(ex.Message);
         }
 
@@ -186,7 +186,7 @@ namespace RecipeTest
 
             DataTable dt = Recipe.LoadByRecipeId(recipeid, "RecipeGet");
             dt.Rows[0]["RecipeName"] = newrecipename;
-            Exception ex = Assert.Throws<Exception>(() => Recipe.Save(dt));
+            Exception ex = Assert.Throws<Exception>(() => Recipe.Save(dt, "Recipe"));
             TestContext.WriteLine(ex.Message);
         }
         [Test]
@@ -201,7 +201,7 @@ namespace RecipeTest
 
             DataTable dt = Recipe.LoadByRecipeId(recipeid, "RecipeGet");
             dt.Rows[0]["DateDrafted"] = datedrafted;
-            Recipe.Save(dt);
+            Recipe.Save(dt, "Recipe");
 
             DateTime newdatedrafted = GetFirstColumnFirstRowValueDate("select datedrafted from recipe where recipeid = " + recipeid);
             Assert.IsTrue(newdatedrafted == datedrafted, "datedrafted for recipe (" + recipeid + ") = " + newdatedrafted);
@@ -220,7 +220,7 @@ namespace RecipeTest
 
             DataTable dt = Recipe.LoadByRecipeId(recipeid, "RecipeGet");
             dt.Rows[0]["CalorieCount"] = caloriecount;
-            Recipe.Save(dt);
+            Recipe.Save(dt, "Recipe");
 
             int newcaloriecount = GetFirstColumnFirstRowValueInt("select caloriecount from recipe where recipeid = " + recipeid);
             Assert.IsTrue(newcaloriecount == caloriecount, "caloriecount for recipe (" + recipeid + ") = " + newcaloriecount);
@@ -239,7 +239,7 @@ namespace RecipeTest
 
             DataTable dt = Recipe.LoadByRecipeId(recipeid, "RecipeGet");
             dt.Rows[0]["CalorieCount"] = newcaloriecount;
-            Exception ex = Assert.Throws<Exception>(() => Recipe.Save(dt));
+            Exception ex = Assert.Throws<Exception>(() => Recipe.Save(dt, "Recipe"));
             TestContext.WriteLine(ex.Message);
         }
 

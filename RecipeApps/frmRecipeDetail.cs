@@ -31,17 +31,17 @@ namespace RecipeWinForms
 
         private void BtnSaveSteps_Click(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            DataMaintenance.SaveDataList(dtsteps, "Step");
         }
 
         private void BtnSaveIngredients_Click(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            DataMaintenance.SaveDataList(dtingredients, "RecipeIngredient");
         }
 
         private void BtnSave_Click(object? sender, EventArgs e)
         {
-            Recipe.Save(dtrecipe);
+            Recipe.Save(dtrecipe, "Recipe");
         }
 
         public void LoadForm(int recipeidval)
@@ -54,8 +54,8 @@ namespace RecipeWinForms
             {
                 dtrecipe.Rows.Add();
             }
-            DataTable dtusers = DataMaintenance.GetDataList("Users",true);
-            DataTable dtcuisine = DataMaintenance.GetDataList("Cuisine", true);
+            DataTable dtusers = DataMaintenance.GetDataList("UsersList",true);
+            DataTable dtcuisine = DataMaintenance.GetDataList("CuisineList", true);
             WindowsFormsUtility.SetControlBinding(txtRecipeName, bindsource);
             WindowsFormsUtility.SetListBinding(lstUser, dtusers, dtrecipe,"Users");
             WindowsFormsUtility.SetListBinding(lstCuisineName, dtcuisine, dtrecipe, "Cuisine");
@@ -86,8 +86,8 @@ namespace RecipeWinForms
                     col.ReadOnly = false;
                 }
             }
-            WindowsFormsUtility.AddComboboxToGrid(gIngredients, DataMaintenance.GetDataList("Ingredient"), "Ingredient", "IngredientName");
-            WindowsFormsUtility.AddComboboxToGrid(gIngredients, DataMaintenance.GetDataList("MeasurementType"), "MeasurementType", "MeasurementTypeName");
+            WindowsFormsUtility.AddComboboxToGrid(gIngredients, DataMaintenance.GetDataList("IngredientList"), "Ingredient", "IngredientName");
+            WindowsFormsUtility.AddComboboxToGrid(gIngredients, DataMaintenance.GetDataList("MeasurementTypeList"), "MeasurementType", "MeasurementTypeName");
             WindowsFormsUtility.AddDeleteButtonToGrid(gIngredients, deletecolumnname);
             WindowsFormsUtility.FormatGridForEdit(gIngredients, "RecipeIngredient");
             //still read only even after this

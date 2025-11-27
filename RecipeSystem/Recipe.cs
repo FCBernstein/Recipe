@@ -29,14 +29,14 @@
             return listdt;
         }
 
-        public static void Save(DataTable dtrecipe)
+        public static void Save(DataTable dtname, string tablename)
         {
-            if (dtrecipe.Rows.Count == 0)
+            if (dtname.Rows.Count == 0)
             {
-                throw new Exception("Cannot call Recipe Save method because there are no rows in the table");
+                throw new Exception("Cannot call Save method because there are no rows in the table");
             }
-            DataRow r = dtrecipe.Rows[0];
-            SQLUtility.SaveDataRow(r, "RecipeUpdate");
+            DataRow r = dtname.Rows[0];
+            SQLUtility.SaveDataRow(r, tablename + "Update");
             
         }
 

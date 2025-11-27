@@ -53,7 +53,7 @@ namespace RecipeWinForms
             Application.UseWaitCursor = true;
             try
             {
-                Recipe.Save(dtrecipe);
+                Recipe.Save(dtrecipe, "Recipe");
             }
             catch (Exception ex)
             {

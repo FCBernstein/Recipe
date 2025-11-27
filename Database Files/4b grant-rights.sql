@@ -40,3 +40,4 @@ grant execute on NumIngPerRecipe to approle
 grant execute on RecipeIngredientGet to approle
 grant execute on RecipeStepGet to approle
 grant execute on RecipeListGet to approle
+grant execute on CuisineListGet to approle
