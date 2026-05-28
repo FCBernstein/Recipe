@@ -7,7 +7,7 @@ as
 begin
 	select @StepDetail = nullif(@StepDetail, '')
 
-	select s.StepId, s.StepDetail, s.StepSequence, r.RecipeId
+	select s.StepId, s.StepDetail, s.StepSequence, s.RecipeId
 	from Recipe r 
 	join Step s 
 	on r.RecipeId = s.RecipeId

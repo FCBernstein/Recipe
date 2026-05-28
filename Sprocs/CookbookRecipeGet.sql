@@ -1,20 +1,21 @@
-create or alter procedure dbo.CookbookGet(
+create or alter procedure dbo.CookbookRecipeGet(
 	@CookbookId int = 0,
 	@All bit = 0, 
-	@IncludeBlank bit = 0,
 	@CookbookName varchar(50) = '')
 as
 begin
-	select @CookbookName = nullif(@CookbookName, ''), @IncludeBlank = isnull(@IncludeBlank, 0)
+	select @CookbookName = nullif(@CookbookName, '')
 
-	select cb.CookbookId, cb.UsersID, cb.CookbookName, cb.Price, cb.CBCreateDate, cb.CookbookActive
+	select cb.CookbookId, r.RecipeId, r.RecipeName, cbr.CBRSequence
 	from Cookbook cb
+	join CookbookRecipe cbr
+	on cb.CookbookId = cbr.CookbookId
+	join Recipe r
+	on cbr.RecipeId = r.RecipeId
 	where cb.CookbookId = @CookbookId
 	or @All = 1
 	or cb.CookbookName like '%' + @CookbookName + '%'
-	union select 0, 0, '', 0.00, '', 0
-	where @IncludeBlank = 1
-	order by cb.CookbookName
+	order by cbr.CBRSequence
 	
 end
 go

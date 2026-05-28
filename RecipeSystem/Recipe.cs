@@ -1,4 +1,6 @@
-﻿namespace RecipeSystem
+﻿using System.Runtime.CompilerServices;
+
+namespace RecipeSystem
 {
     public class Recipe
     {
@@ -18,6 +20,15 @@
             lrcmd.Parameters["@RecipeId"].Value = recipeid;
             loadrecipedt = SQLUtility.GetDataTable(lrcmd);
             return loadrecipedt;
+        }
+
+        public static DataTable LoadByCookbookId(int cookbookid, string sprocname)
+        {
+            DataTable loadcookbookdt = new();
+            SqlCommand lcbcmd = SQLUtility.GetSQLCommand(sprocname);
+            lcbcmd.Parameters["@CookbookId"].Value = cookbookid;
+            loadcookbookdt = SQLUtility.GetDataTable(lcbcmd);
+            return loadcookbookdt;
         }
 
         public static DataTable LoadListAll(string sprocname)
@@ -40,7 +51,7 @@
             
         }
 
-        public static void Delete(DataTable dtrecipe)
+        public static void DeleteRecipe(DataTable dtrecipe)
         {
             int id = (int)dtrecipe.Rows[0]["RecipeId"];
             SqlCommand cmd = SQLUtility.GetSQLCommand("RecipeDelete");
@@ -52,6 +63,15 @@
         {
             SqlCommand getdcmd = SQLUtility.GetSQLCommand("DashboardGet");
             return SQLUtility.GetDataTable(getdcmd);
+        }
+
+        public static void SaveTable(DataTable dt, int recipeid, string tablename)
+        {
+            foreach (DataRow r in dt.Select("", "", DataViewRowState.Added))
+            {
+                r["RecipeId"] = recipeid;
+            }
+            SQLUtility.SaveDataTable(dt, tablename + "Update");
         }
     }
 }

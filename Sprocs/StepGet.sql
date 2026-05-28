@@ -7,7 +7,7 @@ as
 begin
 	select @StepDetail = nullif(@StepDetail, '')
 
-	select s.StepId, s.StepDetail
+	select s.StepId, s.StepDetail, s.RecipeId
 	from Step s
 	where s.StepId = @StepId
 	or @All = 1

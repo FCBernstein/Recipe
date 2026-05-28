@@ -76,7 +76,7 @@ namespace RecipeWinForms
             Application.UseWaitCursor = true;
             try
             {
-                Recipe.Delete(dtrecipe);
+                Recipe.DeleteRecipe(dtrecipe);
                 this.Close();
             }
             catch (Exception ex)

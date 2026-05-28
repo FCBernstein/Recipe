@@ -5,20 +5,21 @@ create or alter procedure dbo.RecipeUpdate(
 	@CalorieCount int,
 	@DateDrafted datetime,
 	@CuisineId int,
---	@DatePublished datetime,
---	@DateArchived datetime,
+	@DatePublished datetime,
+	@DateArchived datetime,
 	@Message varchar(500) = '' output
 )
 as
 begin
-	select @RecipeId = isnull(@RecipeId,0)
+	select @RecipeId = isnull(@RecipeId,0), @DateDrafted = isnull(@DateDrafted,GETDATE())
 
 	if @RecipeId = 0
 	begin
 		insert Recipe(CuisineId, UsersID, RecipeName, CalorieCount, DateDrafted)
-		values(@CuisineId, @UsersID, @RecipeName, @CalorieCount, getdate())
+		values(@CuisineId, @UsersID, @RecipeName, @CalorieCount, @DateDrafted)
 
 		select @RecipeId = scope_identity()
+
 	end
 	else
 	begin
@@ -28,8 +29,10 @@ begin
 			UsersID = @UsersID, 
 			RecipeName = @RecipeName, 
 			CalorieCount = @CalorieCount, 
-			DateDrafted = @DateDrafted
-		where RecipeId = @RecipeId
+			DateDrafted = @DateDrafted,
+			DatePublished = @DatePublished,
+			DateArchived = @DateArchived
+			where RecipeId = @RecipeId
 	end
 
 end

@@ -7,7 +7,7 @@ as
 begin
 	select @RecipeName = nullif(@RecipeName, '')
 
-	select ri.RISequence, ri.Amount, m.MeasurementTypeId, i.IngredientId, ri.RecipeIngredientId
+	select ri.RISequence, ri.Amount, m.MeasurementTypeId, i.IngredientId, ri.RecipeIngredientId, r.RecipeId
 	from Recipe r 
 	join RecipeIngredient ri 
 	on r.RecipeId = ri.RecipeId 

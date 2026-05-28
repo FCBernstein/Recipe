@@ -41,7 +41,7 @@
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Invalid Login. Please try again", Application.ProductName);
+                MessageBox.Show(ex.Message, Application.ProductName);
             }
         }
 

@@ -2,7 +2,7 @@ create or alter procedure dbo.RecipeIngredientUpdate(
     @RecipeIngredientId int output,
     @RecipeId int,
     @IngredientId int,
-    @MeasuementTypeId int,
+    @MeasurementTypeId int,
     @Amount decimal (4,2),
     @RISequence int,
     @Message varchar (500) = '' output
@@ -14,10 +14,10 @@ begin
 
     select @RecipeIngredientId = isnull(@RecipeIngredientId,0)
 
-    if @RecipeId = 0
+    if @RecipeIngredientId = 0
 	begin
 		insert RecipeIngredient(RecipeId, IngredientId, MeasurementTypeId, Amount, RISequence)
-		values(@RecipeId, @IngredientId, @MeasuementTypeId, @Amount, @RISequence)
+		values(@RecipeId, @IngredientId, @MeasurementTypeId, @Amount, @RISequence)
 
 		select @RecipeIngredientId = scope_identity()
 	end
@@ -27,7 +27,7 @@ begin
         set 
             RecipeId = @RecipeId,
             IngredientId = @IngredientId,
-            MeasurementTypeId = @MeasuementTypeId,
+            MeasurementTypeId = @MeasurementTypeId,
             Amount = @Amount,
             RISequence = @RISequence
             where RecipeIngredientId = @RecipeIngredientId

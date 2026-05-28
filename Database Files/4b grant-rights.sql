@@ -6,6 +6,8 @@ go
 grant execute on RecipeUpdate to approle
 grant execute on CuisineGet to approle
 grant execute on CookbookGet to approle
+grant execute on CookbookListGet to approle
+grant execute on CookbookRecipeGet to approle
 grant execute on CourseGet to approle
 grant execute on IngredientGet to approle
 grant execute on MealGet to approle
@@ -41,3 +43,4 @@ grant execute on RecipeIngredientGet to approle
 grant execute on RecipeStepGet to approle
 grant execute on RecipeListGet to approle
 grant execute on CuisineListGet to approle
+grant execute on RecipeClone to approle

@@ -265,7 +265,7 @@ namespace RecipeTest
             Assume.That(recipeid > 0, "No recipes without related data that are not Published or > 30 days archived in DB, can't run test");
             TestContext.WriteLine("existing recipe without related data not Published or > 30 days archived, with id = " + recipeid + " " + recipedesc);
             TestContext.WriteLine("Ensure that app can delete " + recipeid);
-            Recipe.Delete(dt);
+            Recipe.DeleteRecipe(dt);
             DataTable dtafterdelete = GetDataTable("select * from Recipe where recipeid = " + recipeid);
             Assert.IsTrue(dtafterdelete.Rows.Count == 0, "record with recipeid " + recipeid + " exists in DB");
             TestContext.WriteLine("Record with recipeid " + recipeid + " does not exist in DB");
@@ -294,7 +294,7 @@ namespace RecipeTest
             TestContext.WriteLine("existing recipe (without related data) that is Published or < 30 days archived, with id = " + recipeid + " " + recipedesc);
             TestContext.WriteLine("Ensure that app cannot delete " + recipeid);
 
-            Assert.Throws<Exception>(() => Recipe.Delete(dt));
+            Assert.Throws<Exception>(() => Recipe.DeleteRecipe(dt));
 
             TestContext.WriteLine("Unable to delete recipe because of exception");
         }
@@ -316,7 +316,7 @@ namespace RecipeTest
             TestContext.WriteLine("existing recipe with related data, with id = " + recipeid + " " + recipedesc);
             TestContext.WriteLine("Ensure that app cannot delete " + recipeid);
 
-            Assert.Throws<Exception>(() => Recipe.Delete(dt));
+            Assert.Throws<Exception>(() => Recipe.DeleteRecipe(dt));
 
             TestContext.WriteLine("Unable to delete recipe because of exception");
         }

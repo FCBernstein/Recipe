@@ -1,13 +1,5 @@
 ﻿using CPUFramework;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace RecipeWinForms
 {
@@ -58,7 +50,7 @@ namespace RecipeWinForms
             return b;
         }
 
-        private void Delete(int rowindex)
+        private void DoDeleteRowFromGData(int rowindex)
         {
             int id = WindowsFormsUtility.GetIdFromGrid(gData, rowindex, currenttabletype.ToString() + "Id");
             if (id != 0)
@@ -76,6 +68,45 @@ namespace RecipeWinForms
             else if (id == 0 && rowindex < gData.Rows.Count)
             {
                 gData.Rows.Remove(gData.Rows[rowindex]);
+            }
+        }
+
+        private void DeleteRowFromGData(int rowindex)
+        {
+            if (currenttabletype.ToString() == "Users") 
+            {
+                var res = MessageBox.Show("Are you sure you want to delete this user and all related recipes, meals, and cookbooks?", Application.ProductName, MessageBoxButtons.YesNoCancel);
+                switch (res)
+                {
+                    case DialogResult.Yes:
+                        DoDeleteRowFromGData(rowindex);
+                        bool b = Save();
+                        if (b == false)
+                        {
+                            MessageBox.Show("Delete User was not successful. Please check connection to Database and/or if this update violated DB rules.");
+                        }
+                        break;
+                    default: return;
+                }
+            }
+            else
+            {
+                var res = MessageBox.Show("Are you sure you want to delete this record?", Application.ProductName, MessageBoxButtons.YesNoCancel);
+                switch (res)
+                {
+                    case DialogResult.Yes:
+                        try 
+                        {
+                            DoDeleteRowFromGData(rowindex);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message, Application.ProductName);
+                            return;
+                        }
+                        break;
+                    default: return;
+                }
             }
         }
 
@@ -135,7 +166,7 @@ namespace RecipeWinForms
         {
             if (gData.Columns[e.ColumnIndex].Name == deletecolname)
             {
-                Delete(e.RowIndex);
+                DeleteRowFromGData(e.RowIndex);
             }
         }
     }

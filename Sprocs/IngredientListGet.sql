@@ -9,12 +9,13 @@ as
 begin
 	declare @return int = 0 
 
-	select @IngredientName = nullif(@IngredientName, ''), @All = isnull(@All,0), @IngredientId = isnull(@IngredientId,0), @IncludeBlank = isnull(@IncludeBlank, 0)
+	select @IngredientName = nullif(@IngredientName, ''), @IncludeBlank = isnull(@IncludeBlank, 0)
 
 	select i.IngredientId, i.IngredientName
 	from Ingredient i
 	where i.IngredientId = @IngredientId
 	or @All = 1
+	or i.IngredientName like '%' + @IngredientName +'%'
 	union select 0, ''
 	where @IncludeBlank = 1
 	order by i.IngredientName
